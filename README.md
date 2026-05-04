@@ -108,3 +108,31 @@ cell's value:
 | Static            | Yes              | The maze does not change while the robot is navigating   |
 | Discrete          | Yes              | Finite number of states and actions                      |
 | Single-agent      | Yes              | Only one robot is navigating the maze                    |
+
+---
+
+## 6. Performance Analysis
+
+### Results
+
+| Metric              | BFS   | DFS   | Dijkstra |
+|---------------------|-------|-------|----------|
+| Path length (steps) | 19    | 37    | 19       |
+| Total traversal cost| 18    | 44    | 18       |
+| Nodes explored      | 58    | 37    | 57       |
+
+### Optimality
+
+- **BFS** found the shortest path in terms of number of steps (19 steps), because it explores the maze level by level and always finds the path with the fewest hops. However, BFS treats all edges as equal and does not account for cell costs.
+- **DFS** found a valid path but not the shortest one (37 steps, cost 44). DFS goes as deep as possible before backtracking, so it often takes a longer, suboptimal route. It is **not optimal** by design.
+- **Dijkstra** also found a 19-step path with cost 18 — the same as BFS in this maze. Dijkstra is **always optimal** for weighted graphs because it expands nodes by lowest cumulative cost, guaranteeing the minimum-cost path.
+
+### Efficiency
+
+- **BFS** explored 58 nodes. It expands uniformly in all directions, which leads to a moderate number of explored nodes.
+- **DFS** explored only 37 nodes — the fewest — because it commits to a single deep path before trying alternatives. However, this efficiency comes at the expense of optimality.
+- **Dijkstra** explored 57 nodes, similar to BFS, since both systematically cover the search space. Dijkstra has slightly more overhead per node due to the priority queue, but the difference is negligible on a small grid.
+
+### Conclusion
+
+Dijkstra is the best choice for the rescue robot. It guarantees the lowest-cost path while correctly handling hazardous zones with higher traversal costs. BFS is a good alternative when all cells have equal cost, and DFS is the least suitable since it does not guarantee an optimal path.

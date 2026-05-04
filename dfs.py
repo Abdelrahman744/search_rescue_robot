@@ -6,7 +6,7 @@ from maze import get_neighbors
 
 
 def dfs(start, goal):
-    """Run DFS from start to goal. Returns (path, explored_list)."""
+
     stack = [(start, [start])]              # LIFO stack: (position, path_so_far)
     visited = {start}
     explored = []

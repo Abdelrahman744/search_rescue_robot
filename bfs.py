@@ -7,7 +7,7 @@ from maze import get_neighbors, reconstruct_path
 
 
 def bfs(start, goal):
-    """Run BFS from start to goal. Returns (path, explored_list)."""
+
     frontier = deque([start])               # FIFO queue
     came_from = {start: None}               # tracks parent of each visited cell
     explored = []
